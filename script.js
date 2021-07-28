@@ -21,16 +21,15 @@ class UserComponent {
   render() {
     const div = document.createElement("div");
     const h2 = document.createElement("h2");
-    const a = document.createElement("a");
+    const img = document.createElement("img");
 
     h2.textContent = this.login;
-    a.setAttribute("href", this.avatar_url);
-    a.textContent = this.avatar_url;
-    a.style = "color: #bef";
-
-    div.append(h2, a);
+    img.setAttribute("src", this.avatar_url);
+    img.style =
+      "margin-top: 0.1rem; object-fit: cover; width: 100%; height: 20vh;";
+    div.append(h2, img);
     div.style =
-      "margin-top: 20px; padding: 10px; border-radius: 5px; background-color: #222; text-align: center; color: #fff;";
+      "margin-top: 10px; box-sizing: border-box; width: calc(25% - 0.75rem); border-radius: 5px; background-color: #222; text-align: center; color: #fff;";
     return div;
   }
 }
@@ -45,6 +44,8 @@ function showUsers(e) {
       deleteAllChildElements(resultDiv);
       users.forEach((user) => {
         const userComponent = new UserComponent(user);
+        resultDiv.style =
+          "display: flex; flex-wrap: wrap; justify-content: space-between";
         resultDiv.appendChild(userComponent.render());
       });
     })
